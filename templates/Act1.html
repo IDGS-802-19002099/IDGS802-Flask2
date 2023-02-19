@@ -1,0 +1,23 @@
+{% extends "Actividad_layout.html" %}
+
+{%block content%}
+
+<div class="col-xs-6">
+    {%from "_macros.html" import render_field%}
+    <form action="" method="post">
+    <div class="from-group">
+        {{render_field(form.matricula)}}
+    </div>
+    {{render_field(form.nombre)}}
+    {{render_field(form.apaterno)}}
+    {{render_field(form.amaterno)}}
+    {{render_field(form.email)}}
+
+    <input type="submit" value="Registrar">
+    </form>
+</div>    
+<div class="col-xs-6"></div>
+<h3>Nombre:{{nom}}</h3>
+<input type="number">
+{%endblock%}
+

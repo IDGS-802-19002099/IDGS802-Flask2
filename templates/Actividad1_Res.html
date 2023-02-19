@@ -1,0 +1,18 @@
+{% extends "Actividad_layout.html" %}
+
+
+{%block content%}
+    <div>Resultados</div>
+    <label>Maximo: {{maximo}}</label>
+    <br>
+    <label>Minimo: {{minimo}}</label>    
+    <br>
+    <label>Promedio: {{promedio}}</label>
+    <br>
+    <label>Se repitieron:</label>
+    {% for numero, cantidad in contador.items()%}
+    {% if cantidad > 1:%}
+    <label>N.{{numero}} = {{cantidad}} veces</label>
+    {%endif%}
+    {%endfor%}
+{%endblock%}
