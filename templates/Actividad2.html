@@ -1,0 +1,35 @@
+
+{% extends "Actividad_layout.html" %}
+
+{%block content%}
+
+{% from "Act1_macros.html" import render_cajas %}
+
+<form action="/Recibir" method="POST">
+    <label>Diccionario:</label>
+    <label>Ingles</label>
+    <input name="txtIngles"/>
+    <label>Español</label>
+    <input name="txtEspañol"/>
+    <br>
+    <button type="submit">Guardar</button>
+</form>
+<br>
+<hr>
+<form action="/mostrar" method="POST" >
+    <label>Buscar:</label>
+    <input name="txtFiltro"/>
+    <br>
+    <br>
+    <input name="btnlenguaje" type="radio" value="1"/>
+    <label>Ingles</label>
+    <br>
+    <input type="radio" name="btnlenguaje" value="0"/>
+    <br>
+    <label>Español</label>
+    <br>
+    <button type="submit">Buscar</button>
+    <br>
+</form>
+<textarea name="txtResultado" style="height: 200px">{{resultado}}</textarea> 
+{%endblock%}
