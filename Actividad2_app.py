@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 from flask import request
 from collections import Counter
-
 import json
 
 import Actividad1_forms
