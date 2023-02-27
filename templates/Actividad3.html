@@ -1,0 +1,127 @@
+{% extends "Actividad_layout.html" %}
+{%block content%}
+<center>
+    <h1>Calculadora de Resistencias</h1>
+</center>
+<hr>
+<p>Esta herramienta se utiliza para calcular el valor de las resistencias con conductores axiales en una
+    banda de colores. Seleccione la cantidad de bandas y, luego, sus colores para determinar el valor, multiplicador y
+    tolerancia de las resistencias.
+</p>
+<br>
+<center>
+    <img src="static\img\resistencias.png" height="100" width="400" alt="Calculo Resistencias">
+</center>
+<br>
+<form action="/calculoResitencias" method="POST" novalidate>
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <br>
+    <label> <b> Parámetros de la resistencia:</b></label>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">1.ª banda de color</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01" name="txtPrimer">
+
+            <option value="0" selected>Negro (0)</option>
+            <option value="1">Marrón (1)</option>
+            <option value="2">Rojo (2)</option>
+            <option value="3">Naranja (3)</option>
+            <option value="4">Amarillo (4)</option>
+            <option value="5">Verde (5)</option>
+            <option value="6">Azul (6)</option>
+            <option value="7">Violeta (7)</option>
+            <option value="8">Gris (8)</option>
+            <option value="9">Blanco (9)</option>
+        </select>
+    </div>
+
+
+
+
+
+    <br>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect02">2.ª banda de color</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect02" name="txtSegundo" value="{{color2}}">
+
+            <option value="0" selected>Negro (0)</option>
+            <option value="1">Marrón (1)</option>
+            <option value="2">Rojo (2)</option>
+            <option value="3">Naranja (3)</option>
+            <option value="4">Amarillo (4)</option>
+            <option value="5">Verde (5)</option>
+            <option value="6">Azul (6)</option>
+            <option value="7">Violeta (7)</option>
+            <option value="8">Gris (8)</option>
+            <option value="9">Blanco (9)</option>
+        </select>
+    </div>
+
+
+
+
+    <br>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect03">Multiplicador</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect03" name="txtMultiplicador">
+            <option value="0" selected>Negro (0)</option>
+            <option value="1">Marrón (1)</option>
+            <option value="2">Rojo (2)</option>
+            <option value="3">Naranja (3)</option>
+            <option value="4">Amarillo (4)</option>
+            <option value="5">Verde (5)</option>
+            <option value="6">Azul (6)</option>
+            <option value="7">Violeta (7)</option>
+            <option value="8">Gris (8)</option>
+            <option value="9">Blanco (9)</option>
+        </select>
+    </div>
+
+
+    <br>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect04">Tolerancia</label>
+        </div>
+        <input type="radio" name="btnTolerancia" value="0" checked /> dorado
+        <input type="radio" name="btnTolerancia" value="1" /> plateado
+    </div>
+
+
+    <br>
+    <button class="btn btn-primary" type="submit">Calcular</button>
+</form>
+{%from "_macros.html" import render_casilla%}
+<center>
+<table style="border: 1px solid black;">
+    <tr>
+        <td style="border: 1px solid black; ">1 banda</td>
+        <td style="border: 1px solid black; ">2 banda</td>
+        <td style="border: 1px solid black; ">3 banda</td>
+        <td style="border: 1px solid black; ">4 banda</td>
+        <td style="border: 1px solid black; ">minimo</td>
+        <td style="border: 1px solid black; ">maximo</td>
+        <td style="border: 1px solid black; ">Resultado</td>
+    </tr>
+    <tr>
+        {{ render_casilla(color1) }}
+        {{ render_casilla(color2) }}
+        {{ render_casilla(color3) }}
+        {{ render_casilla(color4) }}
+        <td style="border: 1px solid black; "> {{minimo}}</td>
+        <td style="border: 1px solid black; "> {{maximo}}</td>
+        <td style="border: 1px solid black; "> {{resultado}}</td>
+    </tr>
+</table>
+
+<label>Ultimo Calculo:</label>
+<label>{{ultimoCalculo}}</label>
+</center>
+<br>
+<br>
+{%endblock%}
