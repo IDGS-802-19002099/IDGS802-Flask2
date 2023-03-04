@@ -6,6 +6,7 @@
 {% from "Act1_macros.html" import render_cajas %}
 
 <form action="/Recibir" method="POST">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
     <label>Diccionario:</label>
     <label>Ingles</label>
     <input name="txtIngles"/>
@@ -17,6 +18,7 @@
 <br>
 <hr>
 <form action="/mostrar" method="POST" >
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
     <label>Buscar:</label>
     <input name="txtFiltro"/>
     <br>

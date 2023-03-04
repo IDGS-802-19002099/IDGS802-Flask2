@@ -1,1 +1,1 @@
-{"hi": "hola", "hola": "hi", "SEA": "MAR", "MAR": "SEA"}
+{"hi": "hola", "hola": "hi", "DOG": "PERRO", "PERRO": "DOG"}

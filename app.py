@@ -25,21 +25,21 @@ def before_request():
 
 @app.route("/calculoResitencias", methods=["GET","POST"])
 def calculoResistencias():
-    respuesta = ""
+    respuesta = 0
     tolerancia = "0"
     primerBanda = "9"
     segundaBanda = "9"
     Multiplicador = "9"
     colores = ['black', 'brown', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'gray', 'white']
     colTolerancia = ['gold','silver']
-    valorTolerancia=""
+    valorTolerancia=0
     
     if request.method=="POST":
         primerBanda = request.form.get('txtPrimer')
         segundaBanda = request.form.get('txtSegundo')
         Multiplicador = request.form.get('txtMultiplicador')
         tolerancia = request.form.get('btnTolerancia')
-        respuesta = int(int(primerBanda + "" + segundaBanda) * (10 ** int(Multiplicador)))
+        respuesta = float(int(primerBanda + "" + segundaBanda) * (10 ** int(Multiplicador)))
 
     color1 = colores[int(primerBanda)]
     color2 = colores[int(segundaBanda)]
@@ -54,8 +54,8 @@ def calculoResistencias():
     maximo=respuesta+(respuesta*(valorTolerancia/100))
     minimo= respuesta-(respuesta*(valorTolerancia/100))
     valor_cookie=request.cookies.get("ultimo_Calculo")
-    response=make_response(render_template("Actividad3.html", resultado = str(respuesta)+ "ohms " + str(valorTolerancia) +"%", color1 = color1, color2 = color2, color3= color3, color4 = color4, ultimoCalculo=valor_cookie,maximo=str(maximo),minimo=str(minimo)))
-    response.set_cookie("ultimo_Calculo",(str(respuesta)+ "ohms" + str(valorTolerancia)))    
+    response=make_response(render_template("Actividad3.html", resultado = str(respuesta)+ " ohms  " + str(valorTolerancia) +"%", color1 = color1, color2 = color2, color3= color3, color4 = color4, ultimoCalculo=valor_cookie,maximo=str(maximo),minimo=str(minimo)))
+    response.set_cookie("ultimo_Calculo",(str(respuesta)+ " ohms " + str(valorTolerancia)))    
     return response
 
 @app.route("/cookies",methods=["GET", "POST"])
@@ -147,12 +147,13 @@ def mostrar():
     txtFiltro = request.form.get('txtFiltro').upper()
     btnlenguaje= int(request.form.get('btnlenguaje'))
     
-    
+    txtResultado='No existe'
     
     with open("diccionario.txt","r") as archivo:
         diccionario = json.load(archivo)
     
-    txtResultado =  (diccionario[txtFiltro])
+    txtResultado = diccionario.get(txtFiltro, 'No existe')
+    print(txtResultado)
     return render_template("Actividad2.html", resultado = str(txtResultado))
 
     """Actividad
